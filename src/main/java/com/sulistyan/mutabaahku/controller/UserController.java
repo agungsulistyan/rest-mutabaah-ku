@@ -7,6 +7,7 @@ import com.sulistyan.mutabaahku.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,31 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
+
+        BukuMutabaah bkmt = new BukuMutabaah(user);
+        bkmtRepository.save(bkmt);
+
+        final User saveUser = userRepository.save(user);
+
+        if(saveUser == null){
+            throw new ResourceNotFoundException("Gagal Sistem");
+        }
+
+        HashMap<String, Object> hmap = new HashMap<String, Object>();
+        hmap.put("status", HttpStatus.OK.value());
+        hmap.put("message", "success");
+        hmap.put("user", saveUser);
+
+        return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/registerUser", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<?> registerUser(@RequestParam Map<String, String> body) {
+
+        User user = new User();
+        user.setNama(body.get("nama"));
+        user.setUsername(body.get("username"));
+        user.setPassword(body.get("password"));
 
         BukuMutabaah bkmt = new BukuMutabaah(user);
         bkmtRepository.save(bkmt);
