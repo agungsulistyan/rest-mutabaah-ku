@@ -1,8 +1,6 @@
 package com.sulistyan.mutabaahku.controller;
 
-import com.sulistyan.mutabaahku.entity.BukuMutabaah;
 import com.sulistyan.mutabaahku.entity.User;
-import com.sulistyan.mutabaahku.repository.BukuMutabaahRepository;
 import com.sulistyan.mutabaahku.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -20,9 +18,6 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private BukuMutabaahRepository bkmtRepository;
 
     @GetMapping("/users")
     public ResponseEntity<?> getUser(){
@@ -59,9 +54,6 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
 
-        BukuMutabaah bkmt = new BukuMutabaah(user);
-        bkmtRepository.save(bkmt);
-
         final User saveUser = userRepository.save(user);
 
         if(saveUser == null){
@@ -83,9 +75,6 @@ public class UserController {
         user.setNama(body.get("nama"));
         user.setUsername(body.get("username"));
         user.setPassword(body.get("password"));
-
-        BukuMutabaah bkmt = new BukuMutabaah(user);
-        bkmtRepository.save(bkmt);
 
         final User saveUser = userRepository.save(user);
 
@@ -128,9 +117,6 @@ public class UserController {
             @PathVariable(value = "id") Integer userId) throws ResourceNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found :: " + userId));
-
-        BukuMutabaah bkmt = bkmtRepository.findBkmtByUserId(user.getId());
-        bkmtRepository.delete(bkmt);
 
         userRepository.delete(user);
 

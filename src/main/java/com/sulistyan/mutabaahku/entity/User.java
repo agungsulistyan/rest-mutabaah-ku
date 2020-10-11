@@ -3,6 +3,7 @@ package com.sulistyan.mutabaahku.entity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -13,7 +14,19 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id_user")
     private int id;
+    /*
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
+    private List<BMKegiatanTilawah> bmKegiatanTilawah;
 
+    public List<BMKegiatanTilawah> getBmKegiatanTilawah() {
+        return bmKegiatanTilawah;
+    }
+
+    public void setBmKegiatanTilawah(List<BMKegiatanTilawah> bmKegiatanTilawah) {
+        this.bmKegiatanTilawah = bmKegiatanTilawah;
+    }
+    */
     @Column(name="nama_user")
     private String nama;
 
@@ -69,6 +82,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                /*", bmKegiatanTilawah=" + bmKegiatanTilawah +*/
                 ", nama='" + nama + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

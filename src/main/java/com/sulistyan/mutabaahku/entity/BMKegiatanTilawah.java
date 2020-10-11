@@ -15,8 +15,8 @@ public class BMKegiatanTilawah {
     @Column(name="id_bmkt")
     private int idBmKegiatanTilawah;
 
-    @Column(name="id_bukumutabaah")
-    private int idBukuMutabaah;
+    @Column(name="id_user")
+    private int idUser;
 
     @Column(name="tanggal")
     private Date tanggal;
@@ -35,12 +35,12 @@ public class BMKegiatanTilawah {
         this.idBmKegiatanTilawah = idBmKegiatanTilawah;
     }
 
-    public int getIdBukuMutabaah() {
-        return idBukuMutabaah;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setIdBukuMutabaah(int idBukuMutabaah) {
-        this.idBukuMutabaah = idBukuMutabaah;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public Date getTanggal() {
@@ -67,8 +67,8 @@ public class BMKegiatanTilawah {
         this.ayat = ayat;
     }
 
-    public BMKegiatanTilawah(int idBukuMutabaah, Date tanggal, int surat, int ayat) {
-        this.idBukuMutabaah = idBukuMutabaah;
+    public BMKegiatanTilawah(int idUser, Date tanggal, int surat, int ayat) {
+        this.idUser = idUser;
         this.tanggal = tanggal;
         this.surat = surat;
         this.ayat = ayat;
@@ -82,7 +82,7 @@ public class BMKegiatanTilawah {
     public String toString() {
         return "BMKegiatanTilawah{" +
                 "idBmKegiatanTilawah=" + idBmKegiatanTilawah +
-                ", idBukuMutabaah=" + idBukuMutabaah +
+                ", idUser=" + idUser +
                 ", tanggal=" + tanggal +
                 ", surat=" + surat +
                 ", ayat=" + ayat +

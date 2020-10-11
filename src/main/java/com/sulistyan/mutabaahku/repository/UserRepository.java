@@ -1,6 +1,5 @@
 package com.sulistyan.mutabaahku.repository;
 
-import com.sulistyan.mutabaahku.entity.BukuMutabaah;
 import com.sulistyan.mutabaahku.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
